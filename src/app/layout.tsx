@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Header } from "@/widgets/Header";
+import { Roboto } from "next/font/google";
+import { Header } from "@/widgets/header";
+import { Provider } from "react-redux";
+import { ThemeClient } from "@/shared/ui";
+import '@/shared/styles/globals.css'
+import { store } from "@/shared/config/store";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["400", "100", "300", "500", "700", "900"],
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        {children}
+      <body className={roboto.className}>
+        <ThemeClient>
+          <Header />
+          {children}
+        </ThemeClient>
       </body>
     </html>
   );
