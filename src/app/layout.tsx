@@ -4,7 +4,7 @@ import { Header } from "@/widgets/header";
 import { Provider } from "react-redux";
 import { ThemeClient } from "@/shared/ui";
 import '@/shared/styles/globals.css'
-import { store } from "@/shared/config/store";
+import { StoreProvider } from "@/shared/ui";
 
 const roboto = Roboto({
   weight: ["400", "100", "300", "500", "700", "900"],
@@ -24,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <ThemeClient>
-          <Header />
-          {children}
-        </ThemeClient>
+        <StoreProvider>
+          <ThemeClient>
+            <Header />
+            {children}
+          </ThemeClient>
+        </StoreProvider>
       </body>
     </html>
   );

@@ -1,35 +1,27 @@
 import { TextField, FormHelperText, Stack } from "@mui/material";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { FieldError, UseFormRegister, FieldValues } from "react-hook-form";
 
-interface FormData {
-    email?: string,
-    password?: string,
-    userName?: string
-    code?: string
+type ValidFieldNames<T extends FieldValues> = keyof T;
+
+interface FieldProps<T extends FieldValues> {
+    type: string;
+    label: string;
+    name: ValidFieldNames<T>;
+    register: UseFormRegister<T>;
+    error: FieldError | undefined;
+    variant?: "outlined" | "filled" | "standard";
 }
 
-interface FieldProps {
-    type: string,
-    label: string,
-    name: validFieldNames,
-    register: UseFormRegister<FormData>,
-    error: FieldError | undefined,
-    variant?: "outlined" | "filled" | "standard"
-
-}
-
-type validFieldNames = "email" | "password" | "userName" | "code"
-
-export function Field({ type, label, name, register, error, variant = "outlined" }: FieldProps) {
+export function Field<T extends FieldValues>({ type, label, name, register, error, variant = "outlined" }: FieldProps<T>) {
     return (
         <Stack>
             <TextField
                 type={type}
                 label={label}
-                {...register(name)}
+                {...register(name as any)}
                 variant={variant}
             />
             {error && <FormHelperText error>{error.message}</FormHelperText>}
         </Stack>
-    )
+    );
 }
