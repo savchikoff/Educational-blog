@@ -2,9 +2,10 @@ import { TextField, FormHelperText, Stack } from "@mui/material";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 interface FormData {
-    email: string,
-    password: string,
-    userName: string
+    email?: string,
+    password?: string,
+    userName?: string
+    code?: string
 }
 
 interface FieldProps {
@@ -17,7 +18,7 @@ interface FieldProps {
 
 }
 
-type validFieldNames = "email" | "password" | "userName"
+type validFieldNames = "email" | "password" | "userName" | "code"
 
 export function Field({ type, label, name, register, error, variant = "outlined" }: FieldProps) {
     return (

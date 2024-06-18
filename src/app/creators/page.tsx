@@ -1,8 +1,10 @@
-import React from 'react'
+import { Container } from "@mui/material"
 
 function Creators() {
     return (
-        <div>Creators</div>
+        <Container maxWidth={false}>
+            <div>Creators</div>
+        </Container>
     )
 }
 
